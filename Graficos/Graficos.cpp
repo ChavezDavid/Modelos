@@ -39,6 +39,7 @@ mat4 proyeccion;
 
 Modelo *camion;
 Modelo *cuadrado;
+Modelo *tortuga;
 
 Shader *shader;
 //Declaración de ventana
@@ -85,14 +86,15 @@ void actualizar() {
 		vec3(0.0f, 0.0f, 0.0f),		//Posicion del objetivo
 		vec3(0.0f, 1.0f, 0.0f));
 
-	camion->vista = vista;
+	//camion->vista = vista;
 	//cuadrado->vista = vista;
+	tortuga->vista = vista;
 };
 
 void dibujar() {
 	//cuadrado->dibujar(GL_TRIANGLES);
-	camion->dibujar(GL_TRIANGLES);
-	//figura2->dibujar(GL_POLYGON);
+	//camion->dibujar(GL_TRIANGLES);
+	tortuga->dibujar(GL_TRIANGLES);
 }
 
 void inicializarFigura() {
@@ -251,6 +253,79 @@ void inicializarCamion() {
 	camion->proyeccion = proyeccion;
 }
 
+void inicializarTortuga() {
+	tortuga = new Modelo();
+
+	//Caparazon
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 2.0f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, 1.0f, 1.0f),vec4(0.0f, 0.0f, 0.0f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, -1.0f, 1.0f),vec4(0.2f, 0.2f, 0.2f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, 1.0f, 1.0f),vec4(0.3f, 0.3f, 0.3f, 1.0f) });
+
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.0f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(-1.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(0.0f, 1.5f, -1.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+
+	//Cabeza
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, -0.5f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(2.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(1.0f, 1.5f, 0.5f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+	tortuga->vertices.push_back({ vec4(2.0f, 1.5f, 0.0f, 1.0f),vec4(0.4f, 0.4f, 0.4f, 1.0f) });
+
+
+	tortuga->vista = vista;
+	tortuga->proyeccion = proyeccion;
+}
+
 void inicializarvista() {
 	vista = lookAt(posicionCamara, //Posicion de la camara
 		vec3(0.0f, 0.0f, 0.0f),		//Posicion del objetivo
@@ -305,9 +380,9 @@ int main()
 	inicializarvista();
 	inicializarproyeccion();
 
-	//inicializarFigura();
 	//inicializarCuadrado();
-	inicializarCamion();
+	//inicializarCamion();
+	inicializarTortuga();
 
 	//crear instancia del shader
 	const char * rutaVertex = "vShaderSimple.shader";
@@ -328,8 +403,11 @@ int main()
 	//cuadrado->shader = shader;
 	//cuadrado->inicializarVertexArray(posicionID, colorID,ModeloID,vistaID,proyeccionID);
 
-	camion->shader = shader;
-	camion->inicializarVertexArray(posicionID, colorID, ModeloID, vistaID, proyeccionID);
+	//camion->shader = shader;
+	//camion->inicializarVertexArray(posicionID, colorID, ModeloID, vistaID, proyeccionID);
+
+	tortuga->shader = shader;
+	tortuga->inicializarVertexArray(posicionID, colorID, ModeloID, vistaID, proyeccionID);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
